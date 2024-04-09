@@ -9,7 +9,7 @@ export default function createReportObject(employeesList) {
     }
   }
 
-  reportObject.getNumberOfDepartments = () => Object.keys(this).length;
+  reportObject.getNumberOfDepartments = () => Object.keys(employeesList).length;
 
   return reportObject;
 }
