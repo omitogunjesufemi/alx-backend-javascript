@@ -13,8 +13,8 @@ export default async function asyncUploaderUser() {
       return result;
     }).catch((err) => {
       const errResult = {
-        photo: err[0],
-        user: err[1],
+        photo: null,
+        user: null,
       };
       return errResult;
     });
