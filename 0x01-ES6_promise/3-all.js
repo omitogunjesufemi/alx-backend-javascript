@@ -6,17 +6,7 @@ export default function handleProfileSignUp() {
 
   Promise.all([uploadPhotoResponse, createUserResponse])
     .then((responses) => {
-      if (responses) {
-        let stringSet = '';
-        for (const response of responses) {
-          if ('body' in response) {
-            stringSet += `${response.body} `;
-          } else {
-            stringSet += `${response.firstName} ${response.lastName}`;
-          }
-        }
-        console.log(stringSet);
-      }
+      console.log(responses);
     })
     .catch(() => { console.log('Signup system offline'); });
 }
