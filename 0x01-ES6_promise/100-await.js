@@ -11,7 +11,7 @@ export default async function asyncUploaderUser() {
         user: response[1],
       };
       return result;
-    }).catch((err) => {
+    }).catch(() => {
       const errResult = {
         photo: null,
         user: null,
