@@ -177,6 +177,7 @@ This is a project from ALX on ES6 data manipulation in Javascript.
         'Pasta' => 1
         }
         ```
+
 - ### 10. More map data structure
     Create a function named updateUniqueItems that returns an updated map for all items with initial quantity at 1.
     - Prototype: `export default function updateUniqueItems(map)`
@@ -197,3 +198,10 @@ This is a project from ALX on ES6 data manipulation in Javascript.
         'Pasta' => 2
         }
         ```
+- ### 11. Weak link data structure
+    Export a const instance of WeakMap and name it weakMap. Export a new function named queryAPI. It should accept an endpoint argument like so:
+    {
+        protocol: 'http',
+        name: 'getUsers'
+    }
+    Track within the weakMap the number of times queryAPI is called for each endpoint. When the number of queries is >= 5 throw an error with the message `Endpoint load is high`.
