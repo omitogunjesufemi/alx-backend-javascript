@@ -4,7 +4,7 @@ function countStudents(filePath) {
   try {
     const data = fs.readFileSync(filePath, 'utf-8');
     if (data !== null) {
-      const dataArray = data.split('\n').slice(1);
+      const dataArray = data.trim().split('\n').slice(1);
       const dataLength = dataArray.length;
       console.log(`Number of students: ${dataLength}`);
 
