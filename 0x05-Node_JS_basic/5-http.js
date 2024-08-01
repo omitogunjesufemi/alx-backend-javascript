@@ -9,32 +9,36 @@ const app = http.createServer((request, response) => {
   const reqUrl = request.url;
   if (reqUrl.length > 1) {
     response.write('This is the list of our students\n');
-    fs.readFile(filePath, 'utf-8')
-      .then((data) => {
-        const dataArray = data.trim().split('\n').slice(1);
-        const dataLen = dataArray.length;
-        response.write(`Number of students: ${dataLen}\n`);
+    if (filePath) {
+      fs.readFile(filePath, 'utf-8')
+        .then((data) => {
+          const dataArray = data.trim().split('\n').slice(1);
+          const dataLen = dataArray.length;
+          response.write(`Number of students: ${dataLen}\n`);
 
-        const fieldDict = {};
-        for (const line of dataArray) {
-          const lineArray = line.split(',');
-          const field = lineArray[lineArray.length - 1];
+          const fieldDict = {};
+          for (const line of dataArray) {
+            const lineArray = line.split(',');
+            const field = lineArray[lineArray.length - 1];
 
-          if (!fieldDict[field]) {
-            fieldDict[field] = [];
+            if (!fieldDict[field]) {
+              fieldDict[field] = [];
+            }
+
+            fieldDict[field].push(lineArray[0]);
           }
 
-          fieldDict[field].push(lineArray[0]);
-        }
-
-        for (const [course, students] of Object.entries(fieldDict)) {
-          response.write(`Number of students in ${course}: ${students.length}. List: ${students.join(', ')}\n`);
-        }
-        response.end();
-      })
-      .catch(() => {
-        throw new Error('Cannot load the database');
-      });
+          for (const [course, students] of Object.entries(fieldDict)) {
+            response.write(`Number of students in ${course}: ${students.length}. List: ${students.join(', ')}\n`);
+          }
+          response.end();
+        })
+        .catch(() => {
+          response.end('Cannot load the database');
+        });
+    } else {
+      response.end('Cannot load the database');
+    }
   } else {
     response.write('Hello Holberton School!');
     response.end();
