@@ -35,10 +35,10 @@ app.get('/students', (request, response) => {
         for (const [course, students] of Object.entries(fieldDict)) {
           responseText += `Number of students in ${course}: ${students.length}. List: ${students.join(', ')}\n`;
         }
-        response.send(responseText);
+        response.send(responseText.trim());
       })
       .catch(() => {
-        response.send('Cannot load the database');
+        response.send(`${responseText}Cannot load the database`);
       });
   } else {
     response.send('Cannot load the database');
